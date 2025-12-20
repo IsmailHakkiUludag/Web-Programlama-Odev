@@ -58,7 +58,7 @@ namespace SporSalonuYonetim.Controllers
                 return YenidenYukle(model);
             }
 
-            // Yeni randevunun zaman aralığını hesapla
+            // Yeni randevunun zaman aralığını hesaplama fonk
             TimeSpan yeniBaslangic = model.RandevuSaati;
             TimeSpan yeniBitis = model.RandevuSaati.Add(TimeSpan.FromMinutes(secilenHizmet.Sure));
 
@@ -171,4 +171,5 @@ namespace SporSalonuYonetim.Controllers
             return RedirectToAction("Randevularim");
         }
     }
+
 }

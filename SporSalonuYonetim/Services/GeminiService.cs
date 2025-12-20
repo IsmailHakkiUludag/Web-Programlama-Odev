@@ -7,11 +7,10 @@ namespace SporSalonuYonetim.Services
     {
         private readonly HttpClient _httpClient;
 
-        // --- API KEY'İNİ BURAYA YAPIŞTIR ---
+    
         private readonly string _apiKey = "AIzaSyAuuppkIunrotyBM6Fwvg62MBnn6RkPn_c";
 
-        // DÜZELTME: Senin hata raporunda çıkan 'gemini-2.5-flash' modelini kullanıyoruz.
-        // Bu model senin hesabında %100 açık.
+      
         private readonly string _baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
         public GeminiService()
@@ -73,4 +72,5 @@ namespace SporSalonuYonetim.Services
             }
         }
     }
+
 }

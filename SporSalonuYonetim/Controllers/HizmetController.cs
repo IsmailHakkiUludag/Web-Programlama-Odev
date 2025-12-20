@@ -22,7 +22,7 @@ namespace SporSalonuYonetim.Controllers
             return View(hizmetler);
         }
 
-        // EKLEME SAYFASI (GET) - SORUN BURADA ÇÖZÜLÜYOR
+        // EKLEME SAYFASI (GET METHOD) - SORUN BURADA ÇÖZÜLÜYOR
         [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
@@ -31,7 +31,7 @@ namespace SporSalonuYonetim.Controllers
             return View();
         }
 
-        // EKLEME İŞLEMİ (POST)
+        // EKLEME İŞLEMİ (POST METHOD)
         [HttpPost]
         [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
@@ -129,4 +129,5 @@ namespace SporSalonuYonetim.Controllers
             return RedirectToAction(nameof(Index));
         }
     }
+
 }

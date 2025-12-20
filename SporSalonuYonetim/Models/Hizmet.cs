@@ -19,10 +19,11 @@ namespace SporSalonuYonetim.Models
         public int SalonId { get; set; }
         public Salon Salon { get; set; } = null!;
 
-        // Çoka-Çok İlişki: Bu hizmeti veren antrenörler
+        // Çoka-Çok İlişki: Bu hizmeti veren antrenörler.
         public ICollection<Antrenor> Antrenorler { get; set; } = new List<Antrenor>();
 
         // YENİ EKLENEN: Bu hatayı çözer (Randevu Geçmişi)
         public ICollection<Randevu> Randevular { get; set; } = new List<Randevu>();
     }
+
 }

@@ -31,13 +31,13 @@ namespace SporSalonuYonetim.Controllers
         {
             if (!string.IsNullOrEmpty(roleName))
             {
-                // IdentityRole kullanarak yeni rol oluşturuyoruz
+                // IdentityRole kullanarak yeni rol oluşturuyoruz.
                 await _roleManager.CreateAsync(new IdentityRole(roleName.Trim()));
             }
             return RedirectToAction("Index");
         }
 
-        // Rol Silme Eklemesi (Lazım olursa diye)
+        // Rol Silme Eklemesi 
         public async Task<IActionResult> Delete(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -48,4 +48,5 @@ namespace SporSalonuYonetim.Controllers
             return RedirectToAction("Index");
         }
     }
+
 }

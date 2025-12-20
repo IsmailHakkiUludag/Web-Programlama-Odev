@@ -19,12 +19,12 @@ namespace SporSalonuYonetim.Models
         {
             base.OnModelCreating(builder);
 
-            // 1. Ücret alanı hassasiyet ayarı
+            // 1. Ücret alanı hassasiyet ayarı.
             builder.Entity<Hizmet>()
                 .Property(h => h.Ucret)
                 .HasColumnType("decimal(18,2)");
 
-            // 2. Antrenör - Hizmet Arasındaki Çakışmayı Önle
+            // 2. Antrenör - Hizmet Arasındaki Çakışmayı Önleme işlemi
             builder.Entity<Antrenor>()
                 .HasMany(a => a.Hizmetler)
                 .WithMany(h => h.Antrenorler)
@@ -41,7 +41,7 @@ namespace SporSalonuYonetim.Models
                         .HasForeignKey("AntrenorlerId")
                         .OnDelete(DeleteBehavior.Cascade));
 
-            // 3. YENİ EKLENEN: Randevu Tablosundaki Çakışmayı Önle
+            // 3. YENİ EKLENEN: Randevu Tablosundaki Çakışmayı Önleme işlemi
             // Antrenör silinirse Randevuyu silme, hata ver (Restrict)
             builder.Entity<Randevu>()
                 .HasOne(r => r.Antrenor)
@@ -57,4 +57,5 @@ namespace SporSalonuYonetim.Models
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
+
 }

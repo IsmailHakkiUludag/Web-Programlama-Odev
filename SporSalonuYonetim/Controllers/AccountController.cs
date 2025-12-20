@@ -10,7 +10,7 @@ namespace SporSalonuYonetim.Controllers
         private readonly UserManager<Kullanici> _userManager;
         private readonly SignInManager<Kullanici> _signInManager;
 
-        // ÖNEMLİ DEĞİŞİKLİK: Rol sınıfı yerine standart IdentityRole kullanıyoruz
+        
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public AccountController(UserManager<Kullanici> userManager,
@@ -22,13 +22,13 @@ namespace SporSalonuYonetim.Controllers
             _roleManager = roleManager;
         }
 
-        // GİRİŞ YAP SAYFASI (GET)
+        // GİRİŞ YAP SAYFASI (GET METHOD)
         public IActionResult Login()
         {
             return View();
         }
 
-        // GİRİŞ YAP İŞLEMİ (POST)
+        // GİRİŞ YAP İŞLEMİ (POST METHOD)
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -44,7 +44,7 @@ namespace SporSalonuYonetim.Controllers
                 return View(model);
             }
 
-            // Şifre kontrolü ve giriş
+            // Şifre kontrolü ve giriş kısmı
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
 
             if (result.Succeeded)
@@ -56,13 +56,13 @@ namespace SporSalonuYonetim.Controllers
             return View(model);
         }
 
-        // KAYIT OL SAYFASI (GET)
+        // KAYIT OL SAYFASI (GET METHOD)
         public IActionResult Register()
         {
             return View();
         }
 
-        // KAYIT OL İŞLEMİ (POST) - ROL ATAMA BURADA YAPILIYOR
+        // KAYIT OL İŞLEMİ (POST METHOD) - ROL ATAMA BURADA YAPILIYOR
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -73,7 +73,7 @@ namespace SporSalonuYonetim.Controllers
 
             var user = new Kullanici
             {
-                UserName = model.Email, // Kullanıcı adı olarak E-posta kullanıyoruz
+                UserName = model.Email, // Kullanıcı adı olarak E-posta kullanıyoruz.
                 Email = model.Email,
                 FullName = model.FullName
             };
@@ -93,12 +93,12 @@ namespace SporSalonuYonetim.Controllers
                 await _userManager.AddToRoleAsync(user, "uye");
                 // ----------------------------------
 
-                // Kayıt bitince otomatik giriş yap
+                // Kayıt bitince otomatik giriş yap.
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Index", "Home");
             }
 
-            // Eğer hata varsa (Şifre basitse vs.) hataları ekrana yaz
+            // Eğer hata varsa (Şifre basitse vs.) hataları ekrana yaz.
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error.Description);
@@ -120,4 +120,5 @@ namespace SporSalonuYonetim.Controllers
             return View();
         }
     }
+
 }

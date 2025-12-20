@@ -167,7 +167,7 @@ namespace SporSalonuYonetim.Services
                 }
                 else
                 {
-                    // Erkek - Kas/Hacim Kategorisi (Varsayılan)
+                    // Erkek - Kas/Hacim Kategorisi (Varsayılan/Default)
                     int index = rnd.Next(_tensorMaleHypertrophy.Length);
                     generatedOutputUrl = _tensorMaleHypertrophy[index];
                 }
@@ -176,4 +176,5 @@ namespace SporSalonuYonetim.Services
             return generatedOutputUrl;
         }
     }
+
 }

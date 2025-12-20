@@ -5,10 +5,10 @@ namespace SporSalonuYonetim.Models
 {
     public static class IdentitySeedData
     {
-        // Ödevde istenen sabit şifre
+        // Ödevde istenen sabit şifre değeri
         private const string adminPassword = "sau";
 
-        // Öğrenci e posta adresi
+        // Öğrenci e posta adresi (ismailin kullandık)
         private const string adminEmail = "g231210049@sakarya.edu.tr";
 
         public static async Task IdentityTestUser(IApplicationBuilder app)
@@ -61,4 +61,5 @@ namespace SporSalonuYonetim.Models
             }
         }
     }
+
 }

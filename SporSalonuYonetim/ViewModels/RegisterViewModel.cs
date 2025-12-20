@@ -20,7 +20,8 @@ namespace SporSalonuYonetim.ViewModels
         [Compare("Password", ErrorMessage = "Şifreler eşleşmiyor.")]
         public string ConfirmPassword { get; set; } = null!;
 
-        // Kullanıcı adı (UserName) olarak genellikle Email kullanacağız ama yine de ekleyelim
+        // Kullanıcı adı (UserName) olarak genellikle Email'i username olarak kullanacağız ama yine de ekleyelim.
         public string? UserName { get; set; }
     }
+
 }

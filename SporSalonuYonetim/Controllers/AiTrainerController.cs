@@ -4,7 +4,7 @@ using SporSalonuYonetim.Services;
 
 namespace SporSalonuYonetim.Controllers
 {
-    [Authorize] // Sadece üyeler girebilsin
+    [Authorize] // Sadece üyeler girebilsin.
     public class AiTrainerController : Controller
     {
         private readonly GeminiService _geminiService;
@@ -34,7 +34,7 @@ namespace SporSalonuYonetim.Controllers
             string program = programTask.Result;
             string resimUrl = resimTask.Result;
 
-            // Eğer yoğunluktan dolayı resim çizilemediyse, boş kalmasın diye stok foto gösterelim
+            // Eğer yoğunluktan dolayı resim çizilemediyse, boş kalmasın diye stok foto gösterelim.
             if (string.IsNullOrEmpty(resimUrl))
             {
                 resimUrl = Cinsiyet == "Kadın"
@@ -49,4 +49,5 @@ namespace SporSalonuYonetim.Controllers
             return View("Sonuc");
         }
     }
+
 }

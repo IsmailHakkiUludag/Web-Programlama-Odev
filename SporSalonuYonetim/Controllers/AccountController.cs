@@ -44,7 +44,7 @@ namespace SporSalonuYonetim.Controllers
                 return View(model);
             }
 
-            // Şifre kontrolü ve giriş kısmı
+            // Şifre kontrolü ve giriş kısmı.
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
 
             if (result.Succeeded)
@@ -122,3 +122,4 @@ namespace SporSalonuYonetim.Controllers
     }
 
 }
+

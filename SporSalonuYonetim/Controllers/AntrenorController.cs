@@ -75,7 +75,7 @@ namespace SporSalonuYonetim.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var antrenor = await _context.Antrenorler
-                .Include(a => a.Hizmetler) // Mevcut hizmetlerini getir ki seçili gözüksün
+                .Include(a => a.Hizmetler) // Mevcut hizmetlerini getir ki seçili gözüksün.
                 .FirstOrDefaultAsync(a => a.Id == id);
 
             if (antrenor == null) return NotFound();
@@ -95,7 +95,7 @@ namespace SporSalonuYonetim.Controllers
             ModelState.Remove("Salon");
             ModelState.Remove("Hizmetler");
 
-            // Veritabanındaki asıl kaydı hizmetleriyle birlikte çekiyoruz
+            // Veritabanındaki asıl kaydı hizmetleriyle birlikte çekiyoruz.
             var dbAntrenor = await _context.Antrenorler
                 .Include(a => a.Hizmetler)
                 .FirstOrDefaultAsync(a => a.Id == id);
@@ -166,4 +166,5 @@ namespace SporSalonuYonetim.Controllers
             return RedirectToAction(nameof(Index));
         }
     }
+
 }

@@ -20,7 +20,7 @@ namespace SporSalonuYonetim.Controllers
         }
 
         // ==========================================
-        // DASHBOARD (ANA SAYFA)
+        // DASHBOARD (ANA SAYFA KISMI)
         // ==========================================
         public async Task<IActionResult> Index()
         {
@@ -146,4 +146,5 @@ namespace SporSalonuYonetim.Controllers
             return RedirectToAction("Randevular");
         }
     }
+
 }

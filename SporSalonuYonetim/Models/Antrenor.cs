@@ -16,7 +16,7 @@ namespace SporSalonuYonetim.Models
         public string? Telefon { get; set; }
 
         // ESKİ "UzmanlikAlani" string'i kalktı.
-        // YENİ: Antrenörün verebildiği hizmetler listesi
+        // YENİ: Antrenörün verebildiği hizmetler listesi.
         public ICollection<Hizmet> Hizmetler { get; set; } = new List<Hizmet>();
 
         [Display(Name = "Mesai Başlangıç")]
@@ -33,4 +33,5 @@ namespace SporSalonuYonetim.Models
 
         public ICollection<Randevu> Randevular { get; set; } = new List<Randevu>();
     }
+
 }

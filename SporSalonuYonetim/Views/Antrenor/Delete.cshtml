@@ -1,0 +1,39 @@
+﻿@model SporSalonuYonetim.Models.Antrenor
+
+@{
+    ViewData["Title"] = "Sil";
+}
+
+<div class="container mt-5">
+    <div class="alert alert-danger shadow-sm">
+        <h3 class="alert-heading"><i class="fa-solid fa-triangle-exclamation"></i> Silme Onayı</h3>
+        <p class="mb-0">Bu antrenörü silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
+    </div>
+
+    <div class="card shadow border-danger">
+        <div class="card-body">
+            <h4 class="card-title text-danger">@Model.AdSoyad</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Verdiği Hizmetler:</dt>
+                <dd class="col-sm-9">
+                    @(Model.Hizmetler != null && Model.Hizmetler.Any()
+                        ? string.Join(", ", Model.Hizmetler.Select(h => h.Ad))
+                        : "-")
+                </dd>
+
+                <dt class="col-sm-3">Telefon:</dt>
+                <dd class="col-sm-9">@Model.Telefon</dd>
+
+                <dt class="col-sm-3">Salon:</dt>
+                <dd class="col-sm-9">@Model.Salon?.Ad</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger fw-bold">Evet, Sil</button>
+                <a asp-action="Index" class="btn btn-secondary">İptal</a>
+            </form>
+        </div>
+    </div>
+</div>

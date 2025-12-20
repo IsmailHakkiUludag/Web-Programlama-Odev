@@ -1,0 +1,33 @@
+﻿@model SporSalonuYonetim.Models.Hizmet
+
+@{
+    ViewData["Title"] = "Hizmet Ekle";
+}
+
+<div class="container mt-5">
+    <h2>Yeni Hizmet Ekle</h2>
+    <hr />
+    <form asp-action="Create">
+        <div class="mb-3">
+            <label asp-for="Ad" class="form-label">Hizmet Adı</label>
+            <input asp-for="Ad" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Sure" class="form-label">Süre (Dakika)</label>
+            <input asp-for="Sure" type="number" class="form-control" placeholder="Örn: 60" required />
+            <span class="text-muted small">Bu hizmetin randevusu kaç dakika sürecek?</span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Ucret" class="form-label">Ücret (₺)</label>
+            <input asp-for="Ucret" type="number" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="SalonId" class="form-label">Salon</label>
+            <select asp-for="SalonId" class="form-control" asp-items="ViewBag.SalonId"></select>
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>

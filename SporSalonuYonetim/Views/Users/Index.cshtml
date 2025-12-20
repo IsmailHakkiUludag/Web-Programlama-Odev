@@ -1,0 +1,37 @@
+﻿@using SporSalonuYonetim.ViewModels
+@model IEnumerable<UserRolesViewModel>
+
+@{
+    ViewData["Title"] = "Kullanıcı Yönetimi";
+}
+
+<div class="container mt-5">
+    <h2>Kullanıcı Yönetimi</h2>
+    <hr />
+
+    <table class="table table-striped shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Ad Soyad</th>
+                <th>E-Posta</th>
+                <th>Roller</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.FullName</td>
+                    <td>@user.Email</td>
+                    <td>@string.Join(", ", user.Roles)</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" asp-controller="Users" asp-action="Manage" asp-route-userId="@user.UserId">
+                            <i class="fa-solid fa-user-gear"></i> Rolleri Yönet
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

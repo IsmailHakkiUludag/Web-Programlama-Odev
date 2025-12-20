@@ -1,0 +1,41 @@
+﻿@model List<SporSalonuYonetim.ViewModels.ManageUserRolesViewModel>
+
+@{
+    ViewData["Title"] = "Rolleri Yönet";
+    var userId = ViewBag.userId;
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4>@ViewBag.UserName Kullanıcısının Rollerini Yönet</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-action="Manage" asp-route-userId="@userId">
+                <div class="card-title mb-3">Lütfen atamak istediğiniz rolleri seçin:</div>
+
+                <div class="mb-3">
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="form-check m-1">
+                            <input type="hidden" asp-for="@Model[i].RoleId" />
+                            <input type="hidden" asp-for="@Model[i].RoleName" />
+
+                            <input asp-for="@Model[i].Selected" class="form-check-input" />
+                            <label class="form-check-label" asp-for="@Model[i].Selected">
+                                @Model[i].RoleName
+                            </label>
+                        </div>
+                    }
+                </div>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="card-footer bg-white border-0 ps-0">
+                    <button type="submit" class="btn btn-success" style="width:auto">Güncelle</button>
+                    <a asp-action="Index" class="btn btn-secondary" style="width:auto">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SporSalonuYonetim.Models.Salon>
+
+@{
+    ViewData["Title"] = "Salonlar";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fa-solid fa-building text-warning"></i> Şubelerimiz</h2>
+        @if (User.IsInRole("admin"))
+        {
+            <a asp-action="Create" class="btn btn-warning"><i class="fa-solid fa-plus"></i> Yeni Salon Ekle</a>
+        }
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            @if (!string.IsNullOrEmpty(item.Image))
+                            {
+                                <img src="@item.Image" class="img-fluid rounded-start h-100" style="object-fit: cover;" alt="@item.Ad">
+                            }
+                            else
+                            {
+                                <img src="https://via.placeholder.com/150" class="img-fluid rounded-start h-100" alt="Resim Yok">
+                            }
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">@item.Ad</h5>
+                                <p class="card-text text-muted"><i class="fa-solid fa-location-dot"></i> @item.Adres</p>
+                                <p class="card-text"><i class="fa-solid fa-phone"></i> @item.TelefonNumarasi</p>
+
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        <i class="fa-regular fa-clock"></i>
+                                        @item.AcilisSaati.ToString(@"hh\:mm") - @item.KapanisSaati.ToString(@"hh\:mm")
+                                    </small>
+                                </p>
+                                @if (User.IsInRole("admin"))
+                                {
+                                    <div class="d-flex justify-content-end mt-2">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary me-2">Düzenle</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('Silmek istediğine emin misin?');">Sil</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

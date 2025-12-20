@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Programın Hazır";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-success">Hazırsın! <i class="fa-solid fa-dumbbell"></i></h1>
+        <p class="lead">İşte yapay zekanın senin için hazırladığı kişisel yol haritası.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-dark text-white text-center">
+                    <h5 class="mb-0">Hedeflenen Fizik (AI Generated)</h5>
+                </div>
+                <div class="card-body text-center p-0">
+                    <img src="@ViewBag.ResimUrl" class="img-fluid w-100" alt="Yapay Zeka Çizimi" style="max-height: 500px; object-fit: cover;" />
+                </div>
+                <div class="card-footer text-muted small text-center">
+                    * Bu görsel yapay zeka tarafından senin hedeflerine göre özel olarak çizilmiştir.
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fa-solid fa-list-check"></i> Kişiselleştirilmiş Program</h5>
+                </div>
+                <div class="card-body" style="max-height: 600px; overflow-y: auto;">
+                    <div class="program-content">
+                        @Html.Raw(ViewBag.Program)
+                    </div>
+                </div>
+                <div class="card-footer bg-white">
+                    <a asp-action="Index" class="btn btn-outline-primary w-100">Yeni Bir Program Oluştur</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

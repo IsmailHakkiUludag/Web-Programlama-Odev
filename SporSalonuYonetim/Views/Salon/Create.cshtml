@@ -1,0 +1,40 @@
+﻿@model SporSalonuYonetim.Models.Salon
+@{
+    ViewData["Title"] = "Salon Ekle";
+}
+
+<div class="container mt-5">
+    <h2>Yeni Salon Ekle</h2>
+    <hr />
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label asp-for="Ad" class="form-label">Salon Adı</label>
+            <input asp-for="Ad" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Adres" class="form-label">Adres</label>
+            <textarea asp-for="Adres" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="TelefonNumarasi" class="form-label">Telefon</label>
+            <input asp-for="TelefonNumarasi" class="form-control" />
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="AcilisSaati" class="form-label">Açılış Saati</label>
+                <input asp-for="AcilisSaati" type="time" class="form-control" required />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="KapanisSaati" class="form-label">Kapanış Saati</label>
+                <input asp-for="KapanisSaati" type="time" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Resim</label>
+            <input type="file" name="imageFile" class="form-control" accept="image/*" />
+        </div>
+        <button type="submit" class="btn btn-success">Kaydet</button>
+    </form>
+</div>

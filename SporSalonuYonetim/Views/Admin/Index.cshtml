@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Yönetici Paneli";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fa-solid fa-gauge-high"></i> Yönetici Paneli</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2 border-primary border-3 border-start">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-primary text-uppercase mb-1">Toplam Üye</div>
+                            <div class="h5 mb-0 fw-bold text-gray-800">@ViewBag.ToplamUye</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2 border-success border-3 border-start">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-success text-uppercase mb-1">Antrenör Sayısı</div>
+                            <div class="h5 mb-0 fw-bold text-gray-800">@ViewBag.ToplamAntrenor</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dumbbell fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2 border-info border-3 border-start">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-info text-uppercase mb-1">Toplam Randevu</div>
+                            <div class="h5 mb-0 fw-bold text-gray-800">@ViewBag.ToplamRandevu</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar-check fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2 border-warning border-3 border-start">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs fw-bold text-warning text-uppercase mb-1">Toplam Ciro</div>
+                            <div class="h5 mb-0 fw-bold text-gray-800">
+                                @(ViewBag.ToplamKazanc != null ? ((decimal)ViewBag.ToplamKazanc).ToString("C2") : "0 ₺")
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-lira-sign fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 fw-bold text-primary">Hızlı Menü</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a asp-controller="Antrenor" asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Yeni Antrenör Ekle</a>
+                        <a asp-controller="Hizmet" asp-action="Create" class="btn btn-success"><i class="fa-solid fa-plus"></i> Yeni Hizmet Ekle</a>
+                        <a asp-controller="Admin" asp-action="Randevular" class="btn btn-info text-white"><i class="fa-solid fa-calendar-days"></i> Randevuları Yönet</a>
+                        <a asp-controller="Admin" asp-action="Kazanc" class="btn btn-warning text-dark"><i class="fa-solid fa-chart-line"></i> Kazanç Raporları</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

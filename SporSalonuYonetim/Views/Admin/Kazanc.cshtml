@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Antrenör Kazanç Raporu";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2><i class="fa-solid fa-chart-line text-primary"></i> Antrenör Kazanç Raporu</h2>
+        <a asp-action="GunlukKazanc" class="btn btn-outline-primary">
+            <i class="fa-regular fa-calendar-days"></i> Günlük Raporu Gör
+        </a>
+    </div>
+
+    <div class="card bg-success text-white text-center p-4 mb-4 shadow-sm">
+        <h3>Toplam Ciro</h3>
+        <h1 class="display-4 fw-bold">
+            @(ViewBag.ToplamCiro != null ? ((decimal)ViewBag.ToplamCiro).ToString("C2") : "0,00 ₺")
+        </h1>
+        <small>Sadece onaylanmış randevular dahildir.</small>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            Antrenör Bazlı Gelir Dağılımı
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Antrenör Adı Soyadı</th>
+                        <th>Onaylı Randevu Sayısı</th>
+                        <th class="text-end">Kazandırdığı Toplam Tutar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.AntrenorRaporu != null && ViewBag.AntrenorRaporu.Count > 0)
+                    {
+                        foreach (var item in ViewBag.AntrenorRaporu)
+                        {
+                            <tr>
+                                <td class="fw-bold">@item.GetType().GetProperty("AntrenorAdi").GetValue(item, null)</td>
+                                <td>@item.GetType().GetProperty("RandevuSayisi").GetValue(item, null) Adet</td>
+                                <td class="text-end text-success fw-bold">
+                                    @(((decimal)item.GetType().GetProperty("ToplamTutar").GetValue(item, null)).ToString("C2"))
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center py-4 text-muted">
+                                Henüz onaylanmış ve kazanç elde edilmiş bir veri yok. <br />
+                                Lütfen randevuları <strong>"Onayla"</strong> butonuna basarak onaylayın.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

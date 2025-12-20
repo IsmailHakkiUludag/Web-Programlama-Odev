@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SporSalonuYonetim.Models.Randevu>
+
+@{
+    ViewData["Title"] = "Randevularım";
+}
+
+<div class="container mt-5">
+    <h2><i class="fa-solid fa-list-check text-info"></i> Randevularım</h2>
+    <hr />
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">
+            Henüz hiç randevunuz yok. <a asp-action="RandevuAl" class="alert-link">Hemen randevu alabilirsiniz.</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Saat</th>
+                        <th>Hizmet</th>
+                        <th>Antrenör</th>
+                        <th>Durum</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.RandevuTarihi.ToString("dd.MM.yyyy")</td>
+                            <td>@item.RandevuSaati.ToString(@"hh\:mm")</td>
+                            <td><span class="badge bg-primary">@item.Hizmet?.Ad</span></td>
+                            <td>@item.Antrenor?.AdSoyad</td>
+                            <td>
+                                @if (item.Durum == SporSalonuYonetim.Models.RandevuDurum.Onaylandi)
+                                {
+                                    <span class="badge bg-success">Onaylandı</span>
+                                }
+                                else if (item.Durum == SporSalonuYonetim.Models.RandevuDurum.Rededildi)
+                                {
+                                    <span class="badge bg-danger">Reddedildi</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Bekliyor</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="Cancel" method="post" onsubmit="return confirm('Randevuyu iptal etmek istediğinize emin misiniz?');">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="fa-solid fa-xmark"></i> İptal Et
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

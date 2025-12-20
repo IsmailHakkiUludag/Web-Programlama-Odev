@@ -1,0 +1,27 @@
+﻿@model SporSalonuYonetim.Models.Rol
+
+@{
+    ViewData["Title"] = "Rol Ekle";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0">Yeni Rol Ekle</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Rol Adı</label>
+                            <input asp-for="Name" class="form-control" placeholder="Örn: muhasebe" />
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@model SporSalonuYonetim.Models.Antrenor
+
+@{
+    ViewData["Title"] = "Antrenör Düzenle";
+}
+
+<div class="container mt-5">
+    <h2>Antrenör Düzenle</h2>
+    <hr />
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Ad" class="form-label">Ad</label>
+            <input asp-for="Ad" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Soyad" class="form-label">Soyad</label>
+            <input asp-for="Soyad" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Telefon" class="form-label">Telefon</label>
+            <input asp-for="Telefon" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Verebileceği Hizmetler</label>
+            <div class="card p-3" style="max-height: 200px; overflow-y: auto;">
+                @if (ViewBag.Hizmetler != null)
+                {
+                    foreach (var hizmet in (List<SporSalonuYonetim.Models.Hizmet>)ViewBag.Hizmetler)
+                    {
+                        var isChecked = Model.Hizmetler.Any(x => x.Id == hizmet.Id) ? "checked" : "";
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="selectedHizmetler" value="@hizmet.Id" id="hizmet_@hizmet.Id" @isChecked>
+                            <label class="form-check-label" for="hizmet_@hizmet.Id">
+                                @hizmet.Ad (@hizmet.Sure dk)
+                            </label>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="BaslangicSaati" class="form-label">Mesai Başlangıç</label>
+                <input asp-for="BaslangicSaati" type="time" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="BitisSaati" class="form-label">Mesai Bitiş</label>
+                <input asp-for="BitisSaati" type="time" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="SalonId" class="form-label">Salon</label>
+            <select asp-for="SalonId" class="form-control" asp-items="ViewBag.Salonlar"></select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </form>
+</div>

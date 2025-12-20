@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Günlük Kazanç Raporu";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2><i class="fa-solid fa-calendar-day text-success"></i> Günlük Ciro Raporu</h2>
+        <a asp-action="Kazanc" class="btn btn-secondary">
+            <i class="fa-solid fa-arrow-left"></i> Antrenör Raporuna Dön
+        </a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Toplam Randevu</th>
+                        <th class="text-end">Günlük Ciro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.GunlukRapor != null && ViewBag.GunlukRapor.Count > 0)
+                    {
+                        foreach (var item in ViewBag.GunlukRapor)
+                        {
+                            <tr>
+                                <td>
+                                    <i class="fa-regular fa-calendar me-2"></i>
+                                    @item.GetType().GetProperty("Tarih").GetValue(item, null).ToString("dd MMMM yyyy")
+                                </td>
+                                <td>
+                                    <span class="badge bg-info text-dark">
+                                        @item.GetType().GetProperty("RandevuAdedi").GetValue(item, null) Randevu
+                                    </span>
+                                </td>
+                                <td class="text-end fw-bold text-success fs-5">
+                                    @(((decimal)item.GetType().GetProperty("GunlukCiro").GetValue(item, null)).ToString("C2"))
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center p-4 text-muted">
+                                <i class="fa-solid fa-circle-exclamation fa-2x mb-2"></i><br />
+                                Görüntülenecek onaylı kazanç verisi bulunamadı.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

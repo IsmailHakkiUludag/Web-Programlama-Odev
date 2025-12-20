@@ -1,0 +1,90 @@
+﻿@model SporSalonuYonetim.ViewModels.RandevuViewModel
+
+@{
+    ViewData["Title"] = "Randevu Al";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fa-regular fa-calendar-plus"></i> Yeni Randevu Oluştur</h4>
+                </div>
+                <div class="card-body">
+
+                    <div asp-validation-summary="All" class="alert alert-danger" role="alert">
+                        <strong>Lütfen aşağıdaki hatalara dikkat edin:</strong>
+                    </div>
+
+                    <form asp-action="RandevuAl" method="post">
+
+                        <div class="mb-3">
+                            <label asp-for="RandevuTarihi" class="form-label fw-bold">Tarih</label>
+                            <input asp-for="RandevuTarihi" type="date" class="form-control"
+                                   min="@DateTime.Today.ToString("yyyy-MM-dd")" value="@DateTime.Today.ToString("yyyy-MM-dd")" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="RandevuSaati" class="form-label fw-bold">Saat</label>
+                            <input asp-for="RandevuSaati" type="time" class="form-control" required />
+                            <small class="text-muted">Lütfen hizmet süresini dikkate alarak bir saat seçiniz.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="HizmetId" class="form-label fw-bold">Hizmet Seçin</label>
+                            <select asp-for="HizmetId" class="form-select" id="HizmetSecimi" required>
+                                <option value="">-- Bir Hizmet Seçin --</option>
+                                @foreach (var hizmet in Model.Hizmetler)
+                                {
+                                    <option value="@hizmet.Id">@hizmet.Ad (@hizmet.Sure dk - @hizmet.Ucret ₺)</option>
+                                }
+                            </select>
+                            <small class="text-info">Hizmet seçtiğinizde antrenör listesi otomatik filtrelenir.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AntrenorId" class="form-label fw-bold">Antrenör Seçin</label>
+                            <select asp-for="AntrenorId" class="form-select" required>
+                                <option value="">-- Bir Antrenör Seçin --</option>
+                                @foreach (var antrenor in Model.Antrenorler)
+                                {
+                                    <option value="@antrenor.Id">
+                                        @antrenor.AdSoyad
+                                        (Hizmetler: @(antrenor.Hizmetler != null && antrenor.Hizmetler.Any() ? string.Join(", ", antrenor.Hizmetler.Select(h => h.Ad)) : "-"))
+                                    </option>
+                                }
+                            </select>
+                            @if (Model.HizmetId > 0 && !Model.Antrenorler.Any())
+                            {
+                                <div class="text-danger mt-1">Bu hizmeti veren uygun antrenör bulunamadı.</div>
+                            }
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Randevuyu Onayla</button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">İptal</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // 1. Hizmet dropdown'ı değişince çalışır
+        document.getElementById("HizmetSecimi").addEventListener("change", function() {
+            var selectedHizmetId = this.value;
+
+            // Eğer bir hizmet seçildiyse sayfayı o ID ile yeniden yükle (Filtreleme için)
+            if (selectedHizmetId) {
+                window.location.href = "/Randevu/RandevuAl?hizmetId=" + selectedHizmetId;
+            } else {
+                // Hizmet seçimi iptal edilirse filtresiz sayfaya git
+                window.location.href = "/Randevu/RandevuAl";
+            }
+        });
+    </script>
+}

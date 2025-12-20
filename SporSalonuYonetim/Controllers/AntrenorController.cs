@@ -19,7 +19,7 @@ namespace SporSalonuYonetim.Controllers
         {
             var antrenorler = await _context.Antrenorler
                 .Include(x => x.Salon)
-                .Include(x => x.Hizmetler) // İlişkili hizmetleri çek
+                .Include(x => x.Hizmetler) // İlişkili hizmetleri çekme işlemi
                 .ToListAsync();
             return View(antrenorler);
         }
@@ -168,3 +168,4 @@ namespace SporSalonuYonetim.Controllers
     }
 
 }
+

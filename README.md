@@ -2,10 +2,15 @@
 
 Bu proje, **ASP.NET Core 8.0 MVC** mimarisi kullanılarak geliştirilmiş kapsamlı bir **Spor Salonu Randevu ve Yönetim Sistemi**dir. Proje; şube (salon), antrenör ve hizmet yönetimini sağlarken, üyelerin online randevu almasına olanak tanır.
 
-## 👨‍🎓 Öğrenci Bilgileri
+## 👨‍🎓 Öğrencilerin Bilgileri
 
 * **Adı Soyadı:** [İsmail Hakkı Uludağ]
 * **Öğrenci Numarası:** [G231210049]
+* **Ders:** Web Programlama
+* **Dönem:** 2025-2026 Güz
+
+* * **Adı Soyadı:** [Süleyman Gencay Coşkun]
+* **Öğrenci Numarası:** [G231210073]
 * **Ders:** Web Programlama
 * **Dönem:** 2025-2026 Güz
 

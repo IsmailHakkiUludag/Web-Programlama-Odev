@@ -15,14 +15,14 @@ namespace SporSalonuYonetim.Controllers
             _context = context;
         }
 
-        // Tüm hizmetleri JSON olarak döndürür
+        // Tüm hizmetleri JSON olarak döndürür.
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hizmet>>> GetHizmetler()
         {
             return await _context.Hizmetler.Include(h => h.Salon).ToListAsync();
         }
 
-        // ID'ye göre hizmet getirir
+        // ID'ye göre hizmet getirir.
         [HttpGet("{id}")]
         public async Task<ActionResult<Hizmet>> GetHizmet(int id)
         {
@@ -31,11 +31,12 @@ namespace SporSalonuYonetim.Controllers
             return hizmet;
         }
 
-        // Ödev gereksinimi: API üzerinden Antrenörleri filtreleme/listeleme
+        // Ödev gereksinimi: API üzerinden Antrenörleri filtreleme/listeleme işlemi
         [HttpGet("antrenorler")]
         public async Task<ActionResult<IEnumerable<Antrenor>>> GetAntrenorler()
         {
             return await _context.Antrenorler.ToListAsync();
         }
     }
+
 }

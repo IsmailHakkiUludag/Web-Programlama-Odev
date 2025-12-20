@@ -4,23 +4,23 @@ using SporSalonuYonetim.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Veritabanı Bağlantısı
+// Veritabani Baglantisi
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<IdentityContext>(options =>
     options.UseSqlServer(connectionString));
 
-// --- KRİTİK DÜZELTME BURASI ---
-// Rol sınıfı yerine IdentityRole kullanıyoruz.
+// --- KRÃTÃK DÃœZELTME BURASI ---
+// Rol  yerine IdentityRole kullanÃ½yoruz.
 builder.Services.AddIdentity<Kullanici, IdentityRole>(options =>
 {
-    // Şifre Zorluk Ayarları (Test kolaylığı için basitleştirdim)
+    // ÅŸifre Zorluk Ayarlari
     options.Password.RequireDigit = false;
     options.Password.RequiredLength = 3;
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireNonAlphanumeric = false;
 
-    // Giriş Ayarları
+    // GiriÅŸ Ayarlari
     options.SignIn.RequireConfirmedEmail = false;
 })
 .AddEntityFrameworkStores<IdentityContext>()
@@ -44,11 +44,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); // Kimlik Doğrulama (Giriş)
+app.UseAuthentication(); // Kimlik DoÃ°rulama (GiriÅŸ)
 app.UseAuthorization();  // Yetkilendirme (Rol)
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

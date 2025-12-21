@@ -8,7 +8,7 @@ namespace SporSalonuYonetim.Services
         private readonly HttpClient _httpClient;
 
     
-        private readonly string _apiKey = "AIzaSyAuuppkIunrotyBM6Fwvg62MBnn6RkPn_c";
+        private readonly string _apiKey = "A***********************";
 
       
         private readonly string _baseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
@@ -74,3 +74,4 @@ namespace SporSalonuYonetim.Services
     }
 
 }
+
